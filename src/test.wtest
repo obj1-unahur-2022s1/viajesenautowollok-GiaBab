@@ -1,0 +1,94 @@
+import remiseras.*
+import Cliente.*
+import oficina.*
+
+
+describe "clientes" {
+	test "cliente" {
+		assert.equals(18, ludmila.precioPactadoPorKm())
+		assert.equals(30, anaMaria.precioPactadoPorKm())
+		assert.equals(22, teresa.precioPactadoPorKm())
+		anaMaria.noEcoEstable()
+		assert.equals(25, anaMaria.precioPactadoPorKm())
+		anaMaria.esEcoEstable()
+		assert.equals(30, anaMaria.precioPactadoPorKm())
+	} 
+}
+
+describe "viaje de 10k" {
+	test "viaje de 10k roxana"{
+		assert.equals(180, roxana.precioViaje(ludmila, 10))
+		assert.equals(300, roxana.precioViaje(anaMaria, 10))
+		assert.equals(220, roxana.precioViaje(teresa, 10))
+	}
+	test "viaje de 10k gabriela"{
+		assert.equals(216, gabriela.precioViaje(ludmila, 10))
+		assert.equals(360, gabriela.precioViaje(anaMaria, 10))
+		assert.equals(264, gabriela.precioViaje(teresa, 10))
+	}
+	test "viaje de 10k mariela"{
+		assert.equals(180, mariela.precioViaje(ludmila, 10))
+		assert.equals(300, mariela.precioViaje(anaMaria, 10))
+		assert.equals(220, mariela.precioViaje(teresa, 10))
+	}
+	test "viaje de 10k juana"{
+		assert.equals(200, juana.precioViaje(ludmila, 10))
+		assert.equals(200, juana.precioViaje(anaMaria, 10))
+		assert.equals(200, juana.precioViaje(teresa, 10))
+	}
+}
+
+describe "viaje de 2k" {
+	test "viaje de 2k roxana"{
+		assert.equals(36, roxana.precioViaje(ludmila, 2))
+		assert.equals(60, roxana.precioViaje(anaMaria, 2))
+		assert.equals(44, roxana.precioViaje(teresa, 2))
+	}
+	test "viaje de 2k gabriela"{
+		assert.equals(43.20, gabriela.precioViaje(ludmila, 2))
+		assert.equals(72, gabriela.precioViaje(anaMaria, 2))
+		assert.equals(52.80, gabriela.precioViaje(teresa, 2))
+	}
+	test "viaje de 2k mariela"{
+		assert.equals(50, mariela.precioViaje(ludmila, 2))
+		assert.equals(60, mariela.precioViaje(anaMaria, 2))
+		assert.equals(50, mariela.precioViaje(teresa, 2))
+	}
+	test "viaje de 2k juana"{
+		assert.equals(100, juana.precioViaje(ludmila, 2))
+		assert.equals(100, juana.precioViaje(anaMaria, 2))
+		assert.equals(100, juana.precioViaje(teresa, 2))
+	}
+}
+
+describe "Lucía y la cadete" {
+	test "melina"{
+		melina.estaTrabajandoPara(ludmila)
+		assert.equals(15, melina.precioPactadoPorKm())
+		melina.estaTrabajandoPara(anaMaria)
+		assert.equals(27, melina.precioPactadoPorKm())
+		melina.estaTrabajandoPara(teresa)
+		assert.equals(19, melina.precioPactadoPorKm())
+	}
+	test "lucia"{
+		lucia.estaReemplazandoA(mariela)
+		melina.estaTrabajandoPara(ludmila)
+		assert.equals(150, lucia.precioViaje(melina, 10))
+		assert.equals(50, lucia.precioViaje(melina, 1))
+		lucia.estaReemplazandoA(gabriela)
+		assert.equals(180, lucia.precioViaje(melina, 10))
+		assert.equals(18, lucia.precioViaje(melina, 1))
+	}
+}
+
+describe "oficina cooperativa"{
+	test "roxana y juana" {
+		oficina.asignarRemiseras(roxana, juana)
+		assert.equals(juana ,oficina.remiseraElegidaParaViaje(anaMaria,10))
+		assert.equals(roxana ,oficina.remiseraElegidaParaViaje(teresa,10))
+		assert.equals(roxana ,oficina.remiseraElegidaParaViaje(teresa,4))
+		oficina.intercambiarRemiseras()
+		assert.equals(juana, oficina.remiseraPrimeraOpcion())
+		assert.equals(roxana, oficina.remiseraSegundaOpcion())
+	}
+}
