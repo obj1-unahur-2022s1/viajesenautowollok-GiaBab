@@ -1,4 +1,4 @@
-
+/* REMISERA OK */
 object roxana {
 	method precioViaje(cliente, kms) { 
 		return cliente.precioPactadoPorKm() * kms
@@ -12,20 +12,14 @@ object gabriela {
 }
 
 object mariela {
+/* Esto esta muy bien */
 	method precioViaje(cliente, kms) { 
 		return (cliente.precioPactadoPorKm() * kms).max(50)
 	}
 }
 
 object juana {
-	method precioViaje(cliente, kms) { 
-		if(kms <= 8){
-      		return 100
-    	}
-    	else{
-      		return 200
-    	}
-	}
+	method precioViaje(cliente, kms) = if(kms <= 8){100} else {200}
 }
 
 object lucia {

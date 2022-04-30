@@ -4,6 +4,7 @@ import Cliente.*
 object oficina {
   	var primerRemisera
   	var segundoRemisera
+  	/*Este atributo [intercambio] esta de más */
   	var intercambio
   
   	method asignarRemiseras(remisera1, remisera2){
@@ -20,9 +21,13 @@ object oficina {
     	segundoRemisera = remisera
   	}
   	method intercambiarRemiseras(){
+  		self.asignarRemiseras(segundoRemisera,primerRemisera )
+ 		/* 
  		intercambio = segundoRemisera
     	self.cambiarSegundoRemiseraPor(primerRemisera)
     	self.cambiarPrimerRemiserarPor(intercambio)
+    	* /
+    	*/
   	}
   	method remiseraElegidaParaViaje(cliente, kms){
     	if((primerRemisera.precioViaje(cliente, kms) - segundoRemisera.precioViaje(cliente, kms))<30){
